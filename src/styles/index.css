@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --jarvis-blue: #00d4ff;
+  --jarvis-cyan: #00ffff;
+  --jarvis-dark: #0a0a0f;
+  --jarvis-purple: #8b5cf6;
+  --jarvis-neon: #00ff88;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--jarvis-dark);
+  font-family: 'JetBrains Mono', monospace;
+  color: #ffffff;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 212, 255, 0.05);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 255, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 212, 255, 0.5);
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-dark {
+  background: rgba(10, 10, 15, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+/* Glow effects */
+.glow-blue {
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+}
+
+.glow-text {
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+}
+
+/* Scanline effect */
+.scanlines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 212, 255, 0.03) 2px,
+    rgba(0, 212, 255, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Holographic gradient */
+.holo-gradient {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 212, 255, 0.1) 0%,
+    rgba(139, 92, 246, 0.1) 50%,
+    rgba(0, 255, 136, 0.1) 100%
+  );
+}
+
+/* Progress bar animation */
+@keyframes progress-glow {
+  0% { box-shadow: 0 0 5px var(--jarvis-blue); }
+  50% { box-shadow: 0 0 15px var(--jarvis-blue); }
+  100% { box-shadow: 0 0 5px var(--jarvis-blue); }
+}
+
+.progress-bar {
+  animation: progress-glow 2s ease-in-out infinite;
+}
+
+/* Panel styling */
+.panel {
+  @apply rounded-lg p-4 transition-all duration-300;
+  background: linear-gradient(
+    145deg,
+    rgba(0, 212, 255, 0.05) 0%,
+    rgba(139, 92, 246, 0.05) 100%
+  );
+  border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.panel:hover {
+  border-color: rgba(0, 212, 255, 0.4);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.1);
+}
+
+/* Button styles */
+.btn-jarvis {
+  @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+  border: 1px solid rgba(0, 212, 255, 0.4);
+  color: var(--jarvis-cyan);
+}
+
+.btn-jarvis:hover {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%);
+  border-color: rgba(0, 212, 255, 0.6);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-jarvis:active {
+  transform: translateY(0);
+}
+
+/* Input styles */
+.input-jarvis {
+  @apply w-full px-4 py-2 rounded-lg bg-transparent border transition-all duration-200;
+  border-color: rgba(0, 212, 255, 0.3);
+  color: #ffffff;
+}
+
+.input-jarvis:focus {
+  outline: none;
+  border-color: var(--jarvis-cyan);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+}
+
+.input-jarvis::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Title bar drag region */
+.drag-region {
+  -webkit-app-region: drag;
+}
+
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+
+/* Animation utilities */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+/* Status indicators */
+.status-online {
+  @apply w-2 h-2 rounded-full;
+  background: var(--jarvis-neon);
+  box-shadow: 0 0 10px var(--jarvis-neon);
+}
+
+.status-offline {
+  @apply w-2 h-2 rounded-full;
+  background: #666;
+}
+
+.status-warning {
+  @apply w-2 h-2 rounded-full;
+  background: #ffaa00;
+  box-shadow: 0 0 10px #ffaa00;
+}
